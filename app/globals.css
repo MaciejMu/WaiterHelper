@@ -68,6 +68,8 @@
 
 .customer-food {
   display: flex;
+  max-width: 80%;
+  flex-wrap: wrap;
 }
 
 .customer-food-container p {
@@ -102,6 +104,7 @@
 
 .customer-food-input-container {
   display: flex;
+  height: 1.4rem;
 }
 
 .customer-food-input-container input {
