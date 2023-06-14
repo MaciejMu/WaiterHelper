@@ -1,6 +1,7 @@
 import ReservationCard from "@/components/ReservationCard/ReservationCard";
 import "./globals.css";
 import AddReservation from "@/components/AddReservation/AddReservation";
+import CustomerCard from "@/components/CustomerCard/CustomerCard";
 
 function Home() {
   return (
@@ -10,22 +11,13 @@ function Home() {
           <div>
             <h5 className="reservation-header">Reservations</h5>
             <div className="reservation-cards-container">
+              <AddReservation />
               <ReservationCard />
             </div>
           </div>
-          <AddReservation />
         </div>
         <div className="customer-food-container">
-          <div className="customer-food-card-container">
-            <p>Selena Gomez</p>
-            <div className="customer-foods-container">
-              <div className="customer-food"></div>
-              <div className="customer-food-input-container">
-                <input />
-                <button>Add</button>
-              </div>
-            </div>
-          </div>
+          <CustomerCard />
         </div>
       </div>
     </div>

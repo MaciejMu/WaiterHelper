@@ -1,7 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+type Reservation = {
+  id: string;
+  customerName: string;
+  numerOfCustomers: string;
+  time: string;
+};
 
 type InitialState = {
-  value: { customerName: string; numerOfCustomers: string }[];
+  value: Reservation[];
 };
 
 const initialState: InitialState = {
@@ -11,10 +17,7 @@ export const reservationsSlice = createSlice({
   name: "reservations",
   initialState,
   reducers: {
-    addReservation: (
-      state,
-      action: PayloadAction<{ customerName: string; numerOfCustomers: string }>
-    ) => {
+    addReservation: (state, action: PayloadAction<Reservation>) => {
       state.value.push(action.payload);
     },
     deleteReservation: (state, action: PayloadAction<number>) => {

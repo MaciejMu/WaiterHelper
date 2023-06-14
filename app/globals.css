@@ -46,10 +46,18 @@
 
 .reservation-input-container input {
   width: 100%;
+  margin: 0.2rem 0;
 }
 
 .reservation-input-container button {
   width: 100%;
+  cursor: pointer;
+}
+
+.reservation-input-numbers {
+  display: flex;
+  gap: 0.5rem;
+  padding-left: 0.2rem;
 }
 
 .customer-food-container {
@@ -74,7 +82,22 @@
   box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.171);
   width: 80%;
   margin: 1rem;
-  height: 5rem;
+  min-height: 5rem;
+}
+
+.customer-food-card-customer-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.customer-food-card-subtotal {
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+
+.customer-food-card-button {
+  background: none;
+  border: none;
 }
 
 .customer-food-input-container {

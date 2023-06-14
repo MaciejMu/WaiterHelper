@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { deleteReservation } from "@/redux/features/reservationSlice";
+import { Customer, addCustomer } from "@/redux/features/customersSlice";
 
 const ReservationCard = () => {
   const reservations = useSelector(
@@ -12,7 +13,16 @@ const ReservationCard = () => {
 
   const dispatch = useDispatch();
 
-  const handleDeleteReservation = (i: number) => {
+  const handleDeleteReservation = (customerName: Customer, i: number) => {
+    dispatch(
+      addCustomer({
+        id: customerName.id,
+        customerName: customerName.customerName,
+        numerOfCustomers: customerName.numerOfCustomers,
+        food: [],
+        subtotal: 0,
+      })
+    );
     dispatch(deleteReservation(i));
   };
 
@@ -20,12 +30,16 @@ const ReservationCard = () => {
     <>
       {reservations.map((reserv, index) => (
         <div
-          onClick={() => handleDeleteReservation(index)}
-          key={reserv.customerName}
+          onClick={() => handleDeleteReservation(reserv, index)}
           className="reservation-card-container"
+          key={reserv.id}
         >
-          <p>{reserv.customerName}</p>
-          <p>{reserv.numerOfCustomers}👫</p>
+          <div>
+            <p>{reserv.customerName}</p>
+            <p>{reserv.numerOfCustomers}👫</p>
+          </div>
+          <br />
+          <p>{reserv.time}</p>
         </div>
       ))}
     </>
