@@ -20,6 +20,8 @@ const ReservationCard = () => {
         customerName: customerName.customerName,
         numerOfCustomers: customerName.numerOfCustomers,
         food: [],
+        drinks: [],
+        others: [],
         subtotal: 0,
       })
     );

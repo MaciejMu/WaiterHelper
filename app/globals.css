@@ -68,6 +68,7 @@
 
 .customer-food {
   display: flex;
+  flex-direction: column;
   max-width: 80%;
   flex-wrap: wrap;
 }
@@ -79,12 +80,12 @@
 
 .customer-food-card-container {
   background-color: white;
-  padding: 0.5rem 1rem;
+  padding: 1.5rem 2rem;
   border-radius: 0.4rem;
   box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.171);
   width: 80%;
   margin: 1rem;
-  min-height: 5rem;
+  min-height: 8rem;
 }
 
 .customer-food-card-customer-info {
@@ -100,15 +101,22 @@
 .customer-food-card-button {
   background: none;
   border: none;
+  cursor: pointer;
 }
 
-.customer-food-input-container {
+.customer-food-select-container {
   display: flex;
-  height: 1.4rem;
+  flex-direction: column;
+  padding-bottom: 0.5rem;
 }
 
-.customer-food-input-container input {
-  width: 5rem;
+.customer-food-select-container h4 {
+  padding-bottom: 0.3rem;
+}
+
+.customer-food-select button {
+  padding: 0 0.2rem;
+  cursor: pointer;
 }
 
 .customer-foods-container {

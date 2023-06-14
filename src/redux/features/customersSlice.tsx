@@ -5,16 +5,13 @@ export type Customer = {
   customerName: string;
   numerOfCustomers: string;
   food?: string[];
+  drinks?: string[];
+  others?: string[];
   subtotal?: number;
 };
 
 type initialState = {
   value: Customer[];
-};
-
-export type Foods = {
-  id: string;
-  food: string;
 };
 
 const initialState: initialState = {
@@ -28,10 +25,42 @@ const customers = createSlice({
     addCustomer: (state, action: PayloadAction<Customer>) => {
       state.value.push(action.payload);
     },
-    addFood: (state, action: PayloadAction<Foods>) => {
+    addFood: (
+      state,
+      action: PayloadAction<{
+        id: string;
+        food: string;
+      }>
+    ) => {
       state.value.forEach((customer) => {
         if (customer.id === action.payload.id) {
           customer.food?.push(action.payload.food);
+        }
+      });
+    },
+    addDrink: (
+      state,
+      action: PayloadAction<{
+        id: string;
+        drink: string;
+      }>
+    ) => {
+      state.value.forEach((customer) => {
+        if (customer.id === action.payload.id) {
+          customer.drinks?.push(action.payload.drink);
+        }
+      });
+    },
+    addOther: (
+      state,
+      action: PayloadAction<{
+        id: string;
+        other: string;
+      }>
+    ) => {
+      state.value.forEach((customer) => {
+        if (customer.id === action.payload.id) {
+          customer.others?.push(action.payload.other);
         }
       });
     },
@@ -42,4 +71,5 @@ const customers = createSlice({
 });
 
 export default customers.reducer;
-export const { addCustomer, addFood, removeCustomer } = customers.actions;
+export const { addCustomer, addFood, addDrink, addOther, removeCustomer } =
+  customers.actions;
