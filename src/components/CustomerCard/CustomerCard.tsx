@@ -63,7 +63,9 @@ const CustomerCard = () => {
               <h4>{c.customerName}</h4>
               <p>{c.numerOfCustomers}👫</p>
             </div>
-            <b className="customer-food-card-subtotal">$ {subtotal}</b>
+            <b className="customer-food-card-subtotal">
+              $ {subtotal.toFixed(2)}
+            </b>
           </div>
           <div className="customer-foods-container">
             <div className="customer-food">
