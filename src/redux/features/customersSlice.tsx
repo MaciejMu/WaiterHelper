@@ -7,7 +7,7 @@ export type Customer = {
   food?: string[];
   drinks?: string[];
   others?: string[];
-  subtotal?: number;
+  subtotal: number;
 };
 
 type initialState = {
@@ -64,6 +64,19 @@ const customers = createSlice({
         }
       });
     },
+    addToSubtotal: (
+      state,
+      action: PayloadAction<{
+        id: string;
+        subtotal: number;
+      }>
+    ) => {
+      state.value.forEach((customer) => {
+        if (customer.id === action.payload.id) {
+          customer.subtotal += action.payload.subtotal;
+        }
+      });
+    },
     removeCustomer: (state, action: PayloadAction<number>) => {
       state.value.splice(action.payload, 1);
     },
@@ -71,5 +84,11 @@ const customers = createSlice({
 });
 
 export default customers.reducer;
-export const { addCustomer, addFood, addDrink, addOther, removeCustomer } =
-  customers.actions;
+export const {
+  addCustomer,
+  addFood,
+  addDrink,
+  addOther,
+  addToSubtotal,
+  removeCustomer,
+} = customers.actions;

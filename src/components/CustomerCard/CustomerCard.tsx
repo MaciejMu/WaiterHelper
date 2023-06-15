@@ -1,8 +1,10 @@
 "use client";
 import {
+  Customer,
   addDrink,
   addFood,
   addOther,
+  addToSubtotal,
   removeCustomer,
 } from "@/redux/features/customersSlice";
 import { RootState } from "@/redux/store";
@@ -14,17 +16,16 @@ const CustomerCard = () => {
   const [customerFood, setCustomerFood] = useState("");
   const [customerDrinks, setCustomerDrinks] = useState("");
   const [customerOthers, setCustomerOthers] = useState("");
-  const [subtotal, setSubtotal] = useState(0);
 
   const customers = useSelector((state: RootState) => state.customers.value);
 
   const dispatch = useDispatch();
 
-  const handleAddFood = (id: string) => {
+  const handleAddFood = (subtotal: number, id: string) => {
     if (!customerFood) return;
     const [food, price] = customerFood.split(":");
     dispatch(addFood({ id, food: food }));
-    setSubtotal((prev) => prev + parseFloat(price));
+    dispatch(addToSubtotal({ id, subtotal: parseFloat(price) }));
     setCustomerFood("");
   };
 
@@ -32,7 +33,7 @@ const CustomerCard = () => {
     if (!customerDrinks) return;
     const [drink, price] = customerDrinks.split(":");
     dispatch(addDrink({ id, drink: drink }));
-    setSubtotal((prev) => prev + parseFloat(price));
+    dispatch(addToSubtotal({ id, subtotal: parseFloat(price) }));
     setCustomerDrinks("");
   };
 
@@ -40,7 +41,7 @@ const CustomerCard = () => {
     if (!customerOthers) return;
     const [other, price] = customerOthers.split(":");
     dispatch(addOther({ id, other: other }));
-    setSubtotal((prev) => prev + parseFloat(price));
+    dispatch(addToSubtotal({ id, subtotal: parseFloat(price) }));
     setCustomerOthers("");
   };
 
@@ -64,7 +65,7 @@ const CustomerCard = () => {
               <p>{c.numerOfCustomers}👫</p>
             </div>
             <b className="customer-food-card-subtotal">
-              $ {subtotal.toFixed(2)}
+              $ {c.subtotal.toFixed(2)}
             </b>
           </div>
           <div className="customer-foods-container">
@@ -118,7 +119,9 @@ const CustomerCard = () => {
                       Mushroom Risotto
                     </option>
                   </select>
-                  <button onClick={() => handleAddFood(c.id)}>+</button>
+                  <button onClick={() => handleAddFood(c.subtotal, c.id)}>
+                    +
+                  </button>
                 </div>
               </div>
               {c.food?.map((f) => (
