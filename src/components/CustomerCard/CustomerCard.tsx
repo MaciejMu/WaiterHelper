@@ -1,6 +1,5 @@
 "use client";
 import {
-  Customer,
   addDrink,
   addFood,
   addOther,
@@ -8,9 +7,9 @@ import {
   removeCustomer,
 } from "@/redux/features/customersSlice";
 import { RootState } from "@/redux/store";
-import { nanoid } from "nanoid";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import UniqueStringDisplay from "../UniqueStringDisplay/UniqueStringDisplay";
 
 const CustomerCard = () => {
   const [customerFood, setCustomerFood] = useState("");
@@ -21,7 +20,7 @@ const CustomerCard = () => {
 
   const dispatch = useDispatch();
 
-  const handleAddFood = (subtotal: number, id: string) => {
+  const handleAddFood = (id: string) => {
     if (!customerFood) return;
     const [food, price] = customerFood.split(":");
     dispatch(addFood({ id, food: food }));
@@ -60,7 +59,7 @@ const CustomerCard = () => {
             >
               X
             </button>
-            <div>
+            <div className="customer-food-name-container">
               <h4>{c.customerName}</h4>
               <p>{c.numerOfCustomers}👫</p>
             </div>
@@ -119,14 +118,10 @@ const CustomerCard = () => {
                       Mushroom Risotto
                     </option>
                   </select>
-                  <button onClick={() => handleAddFood(c.subtotal, c.id)}>
-                    +
-                  </button>
+                  <button onClick={() => handleAddFood(c.id)}>+</button>
                 </div>
               </div>
-              {c.food?.map((f) => (
-                <p key={nanoid(2)}>{f}</p>
-              ))}
+              <UniqueStringDisplay array={c.food ? c.food : []} />
             </div>
             <div className="customer-food">
               <div className="customer-food-select-container">
@@ -155,9 +150,7 @@ const CustomerCard = () => {
                   <button onClick={() => handleAddDrinks(c.id)}>+</button>
                 </div>
               </div>
-              {c.drinks?.map((f) => (
-                <p key={nanoid(2)}>{f}</p>
-              ))}
+              <UniqueStringDisplay array={c.drinks ? c.drinks : []} />
             </div>
             <div className="customer-food">
               <div className="customer-food-select-container">
@@ -185,9 +178,7 @@ const CustomerCard = () => {
                   <button onClick={() => handleAddOthers(c.id)}>+</button>
                 </div>
               </div>
-              {c.others?.map((f) => (
-                <p key={nanoid(2)}>{f}</p>
-              ))}
+              <UniqueStringDisplay array={c.others ? c.others : []} />
             </div>
           </div>
         </div>

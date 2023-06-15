@@ -57,7 +57,10 @@
 .reservation-input-numbers {
   display: flex;
   gap: 0.5rem;
-  padding-left: 0.2rem;
+}
+
+.reservation-input-numbers input {
+  padding-left: 0.3rem;
 }
 
 .customer-food-container {
@@ -99,9 +102,15 @@
 }
 
 .customer-food-card-button {
+  font-size: 1rem;
   background: none;
   border: none;
   cursor: pointer;
+  height: fit-content;
+}
+
+.customer-food-name-container :last-child {
+  font-size: 1.2rem;
 }
 
 .customer-food-select-container {
