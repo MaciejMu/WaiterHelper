@@ -11,10 +11,10 @@ const UniqueStringDisplay: React.FC<UniqueStringDisplayProps> = ({ array }) => {
     countMap[element] = (countMap[element] || 0) + 1;
   });
 
-  const renderedArray = Object.keys(countMap).map((key) => {
-    const count = countMap[key];
-    const displayText = count > 1 ? `${key} x${count}` : key;
-    return <p key={key}>{displayText}</p>;
+  const renderedArray = Object.keys(countMap).map((k) => {
+    const count = countMap[k];
+    const displayText = count > 1 ? `${k} x${count}` : k;
+    return <p key={k}>{displayText}</p>;
   });
 
   return <div>{renderedArray}</div>;

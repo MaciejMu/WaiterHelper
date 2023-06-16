@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-type Reservation = {
+
+export type Reservation = {
   id: string;
   customerName: string;
   numerOfCustomers: string;
