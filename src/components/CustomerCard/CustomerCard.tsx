@@ -14,7 +14,7 @@ import UniqueStringDisplay from "../UniqueStringDisplay/UniqueStringDisplay";
 const CustomerCard = () => {
   const [customerFood, setCustomerFood] = useState("");
   const [customerDrinks, setCustomerDrinks] = useState("");
-  const [customerOthers, setCustomerOthers] = useState("");
+  const [customerOther, setCustomerOther] = useState("");
 
   const customers = useSelector((state: RootState) => state.customers.value);
 
@@ -36,12 +36,12 @@ const CustomerCard = () => {
     setCustomerDrinks("");
   };
 
-  const handleAddOthers = (id: string) => {
-    if (!customerOthers) return;
-    const [other, price] = customerOthers.split(":");
+  const handleAddOther = (id: string) => {
+    if (!customerOther) return;
+    const [other, price] = customerOther.split(":");
     dispatch(addOther({ id, other: other }));
     dispatch(addToSubtotal({ id, subtotal: parseFloat(price) }));
-    setCustomerOthers("");
+    setCustomerOther("");
   };
 
   const handleDeletecustomer = (i: number) => {
@@ -160,9 +160,9 @@ const CustomerCard = () => {
                 <div className="customer-food-select">
                   <select
                     name="others"
-                    value={customerOthers}
+                    value={customerOther}
                     onChange={(e) => {
-                      setCustomerOthers(e.target.value);
+                      setCustomerOther(e.target.value);
                     }}
                   >
                     <option></option>
@@ -175,7 +175,7 @@ const CustomerCard = () => {
                     </option>
                     <option value="Fruit Salad:6.99">Fruit Salad</option>
                   </select>
-                  <button onClick={() => handleAddOthers(c.id)}>+</button>
+                  <button onClick={() => handleAddOther(c.id)}>+</button>
                 </div>
               </div>
               <UniqueStringDisplay array={c.others ? c.others : []} />

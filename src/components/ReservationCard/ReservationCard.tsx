@@ -3,8 +3,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useDispatch } from "react-redux";
-import { deleteReservation } from "@/redux/features/reservationSlice";
-import { Customer, addCustomer } from "@/redux/features/customersSlice";
+import {
+  Reservation,
+  deleteReservation,
+} from "@/redux/features/reservationSlice";
+import { addCustomer } from "@/redux/features/customersSlice";
 
 const ReservationCard = () => {
   const reservations = useSelector(
@@ -13,7 +16,7 @@ const ReservationCard = () => {
 
   const dispatch = useDispatch();
 
-  const handleDeleteReservation = (customerName: Customer, i: number) => {
+  const handleDeleteReservation = (customerName: Reservation, i: number) => {
     dispatch(
       addCustomer({
         id: customerName.id,
@@ -29,11 +32,11 @@ const ReservationCard = () => {
   };
 
   return (
-    <>
+    <div className="reservation-card-container">
       {reservations.map((reserv, index) => (
         <div
           onClick={() => handleDeleteReservation(reserv, index)}
-          className="reservation-card-container"
+          className="reservation-card-item"
           key={reserv.id}
         >
           <div>
@@ -44,7 +47,7 @@ const ReservationCard = () => {
           <p>{reserv.time}</p>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
