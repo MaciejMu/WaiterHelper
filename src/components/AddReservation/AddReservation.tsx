@@ -11,7 +11,8 @@ const AddReservation = () => {
 
   const dispatch = useDispatch();
 
-  const handleAddReservation = () => {
+  const handleAddReservation = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (!customerName) return;
     dispatch(
       addReservation({
@@ -26,10 +27,14 @@ const AddReservation = () => {
     setTime("12:00");
   };
   return (
-    <div className="reservation-input-container">
+    <form
+      className="reservation-input-container"
+      onSubmit={handleAddReservation}
+    >
       <input
         value={customerName}
         onChange={(e) => setCustomerName(e.target.value)}
+        placeholder="Reservation name"
       />
       <div className="reservation-input-numbers">
         <input
@@ -47,8 +52,8 @@ const AddReservation = () => {
           onChange={(e) => setTime(e.target.value)}
         />
       </div>
-      <button onClick={() => handleAddReservation()}>Add</button>
-    </div>
+      <button type="submit">Add</button>
+    </form>
   );
 };
 
